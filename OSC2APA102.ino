@@ -50,6 +50,8 @@ void APA102control(OSCMessage &msg)
     int s = msg.getBlob(0,(unsigned char *)v, min(length, NUM_LEDS * 3));
     memcpy(leds, v+4, min(s-4, NUM_LEDS * 3));
     FastLED.show();
+  } else {
+    Serial.println("err : received message not supported");
   }
 }
 
