@@ -29,7 +29,7 @@ SLIPEncodedUSBSerial SLIPSerial(Serial);
 #define DATA_PIN 3
 #define CLOCK_PIN 13
 
-APA102Controller_WithBrightness<DATA_PIN, CLOCK_PIN, GRB> ledController;
+APA102Controller_WithBrightness<DATA_PIN, CLOCK_PIN, BGR> ledController;
 CRGB leds[NUM_LEDS];
 char brightness=255;
 int i=0;
