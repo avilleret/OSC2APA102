@@ -21,7 +21,7 @@ SLIPEncodedUSBSerial SLIPSerial(Serial);
 
 
 // How many leds in your strip?
-#define NUM_LEDS 10
+#define NUM_LEDS 2048
 
 // For led chips like Neopixels, which have a data line, ground, and power, you just
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
@@ -54,16 +54,16 @@ void APA102control(OSCMessage &msg)
 }
 
 void setup() {
-    SLIPSerial.begin(115200);   // set this as high as you can reliably run on your platform
+    SLIPSerial.begin(460800);   // set this as high as you can reliably run on your platform
     while(!Serial)
       ;   // Leonardo bug
     FastLED.addLeds((CLEDController*) &ledController, leds, NUM_LEDS);
  
-  for (int i=0; i<NUM_LEDS; i++){
+  for (int i=0; i<NUM_LEDS || i<10; i++){
     // Turn the LED on, then pause
     leds[i] = CRGB::White;
     FastLED.show();
-    delay(10);
+    delay(2);
     // Now turn the LED off, then pause
     leds[i] = CRGB::Black;
     FastLED.show();
