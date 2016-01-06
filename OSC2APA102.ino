@@ -54,7 +54,7 @@ void APA102control(OSCMessage &msg)
 }
 
 void setup() {
-    SLIPSerial.begin(460800);   // set this as high as you can reliably run on your platform
+    SLIPSerial.begin(921600);   // set this as high as you can reliably run on your platform
     while(!Serial)
       ;   // Leonardo bug
     FastLED.addLeds((CLEDController*) &ledController, leds, NUM_LEDS);
