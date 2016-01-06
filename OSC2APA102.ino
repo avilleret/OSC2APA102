@@ -46,13 +46,11 @@ void APA102control(OSCMessage &msg)
   else if(msg.isBlob(0))
   {
     int length=msg.getDataLength(0);
-    uint8_t v[length];
-    int s = msg.getBlob(0,(unsigned char *)v, min(length, NUM_LEDS * 3));
-    memcpy(leds, v+4, min(s-4, NUM_LEDS * 3));
+    uint8_t v[length+4];
+    int s = msg.getBlob(0,(unsigned char *)v, min(length+4, NUM_LEDS * 3));
+    memcpy((uint8_t *)leds, v+4, max(min(s-4, NUM_LEDS * 3),0));
     FastLED.show();
-  } else {
-    Serial.println("err : received message not supported");
-  }
+  } 
 }
 
 void setup() {
@@ -60,6 +58,17 @@ void setup() {
     while(!Serial)
       ;   // Leonardo bug
     FastLED.addLeds((CLEDController*) &ledController, leds, NUM_LEDS);
+ 
+  for (int i=0; i<NUM_LEDS; i++){
+    // Turn the LED on, then pause
+    leds[i] = CRGB::White;
+    FastLED.show();
+    delay(10);
+    // Now turn the LED off, then pause
+    leds[i] = CRGB::Black;
+    FastLED.show();
+    // delay(500);
+  }
 }
 
 void loop() {
