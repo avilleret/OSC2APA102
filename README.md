@@ -5,9 +5,11 @@ OSC2APA102
 # Dependencies
 
 ## Arduino code
+
 - oscuino : 
 
 ~~~~
+  cd ARDUINO_LIBRARY_FOLDER // could be ~/Documents/Arduino/libraries on Mac OS
   git clone https://github.com/CNMAT/OSC.git
   cd OSC
   git reset --hard f13a8167679a46d898397dda7534761895fb24cc
