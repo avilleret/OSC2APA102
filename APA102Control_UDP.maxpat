@@ -38,6 +38,30 @@
 		"subpatcher_template" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-50",
+					"maxclass" : "number",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "bang" ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 336.0, 387.0, 50.0, 22.0 ],
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_longname" : "number[2]",
+							"parameter_shortname" : "number[2]",
+							"parameter_type" : 3,
+							"parameter_invisible" : 1
+						}
+
+					}
+,
+					"style" : "",
+					"varname" : "number[2]"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-48",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -585,7 +609,6 @@
 					"outlettype" : [ "" ],
 					"parameter_enable" : 1,
 					"patching_rect" : [ 61.0, 204.871582, 321.0, 14.439117 ],
-					"presentation_rect" : [ 568.0, 279.432465, 0.0, 0.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "slider[1]",
@@ -857,10 +880,28 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-26", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-25", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-48", 0 ],
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-25", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-50", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"source" : [ "obj-25", 1 ]
 				}
 
 			}
@@ -920,12 +961,13 @@
 			}
  ],
 		"parameters" : 		{
-			"obj-24" : [ "slider", "slider", 0 ],
-			"obj-19" : [ "number[1]", "number[1]", 0 ],
-			"obj-26" : [ "slider[1]", "slider", 0 ],
-			"obj-10" : [ "number", "number", 0 ],
 			"obj-25" : [ "swatch", "swatch", 0 ],
-			"obj-9" : [ "multislider", "multislider", 0 ]
+			"obj-9" : [ "multislider", "multislider", 0 ],
+			"obj-24" : [ "slider", "slider", 0 ],
+			"obj-10" : [ "number", "number", 0 ],
+			"obj-26" : [ "slider[1]", "slider", 0 ],
+			"obj-50" : [ "number[2]", "number[2]", 0 ],
+			"obj-19" : [ "number[1]", "number[1]", 0 ]
 		}
 ,
 		"dependency_cache" : [ 			{
