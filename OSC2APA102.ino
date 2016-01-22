@@ -21,16 +21,21 @@ SLIPEncodedUSBSerial SLIPSerial(Serial);
 
 
 // How many leds in your strip?
-#define NUM_LEDS 300
+#define NUM_LEDS 700
 
 // For led chips like Neopixels, which have a data line, ground, and power, you just
 // need to define DATA_PIN.  For led chipsets that are SPI based (four wires - data, clock,
 // ground, and power), like the LPD8806 define both DATA_PIN and CLOCK_PIN
-#define DATA_PIN 18
-#define CLOCK_PIN 19
+#define DATA_PIN 11
+#define CLOCK_PIN 13
+#define DATA_PIN2 7
+#define CLOCK_PIN2 14
 
 APA102Controller_WithBrightness<DATA_PIN, CLOCK_PIN, BGR, DATA_RATE_MHZ(12)> ledController;
+APA102Controller_WithBrightness<DATA_PIN2, CLOCK_PIN2, BGR, DATA_RATE_MHZ(12)> ledController2;
+
 CRGB leds[NUM_LEDS];
+CRGB leds2[NUM_LEDS];
 char brightness=255;
 int i=0;
 
@@ -41,6 +46,7 @@ void APA102control(OSCMessage &msg)
   if (msg.isInt(0))
   {
     ledController.setAPA102Brightness(msg.getInt(0));
+    ledController2.setAPA102Brightness(msg.getInt(0));
     FastLED.show();
   }
   else if(msg.isBlob(0))
@@ -50,7 +56,27 @@ void APA102control(OSCMessage &msg)
     int s = msg.getBlob(0,(unsigned char *)v, min(length+4, NUM_LEDS * 3));
     memcpy((uint8_t *)leds, v+4, max(min(s-4, NUM_LEDS * 3),0));
     FastLED.show();
-  } 
+  }
+}
+
+void APA102control2(OSCMessage &msg)
+{
+
+ // I had to add this to make it work on Leonardo: static const int LEDBUILTIN=13;
+  if (msg.isInt(0))
+  {
+    ledController.setAPA102Brightness(msg.getInt(0));
+    ledController2.setAPA102Brightness(msg.getInt(0));
+    FastLED.show();
+  }
+  else if(msg.isBlob(0))
+  {
+    int length=msg.getDataLength(0);
+    uint8_t v[length+4];
+    int s = msg.getBlob(0,(unsigned char *)v, min(length+4, NUM_LEDS * 3));
+    memcpy((uint8_t *)leds2, v+4, max(min(s-4, NUM_LEDS * 3),0));
+    FastLED.show();
+  }
 }
 
 void setup() {
@@ -58,7 +84,7 @@ void setup() {
     while(!Serial)
       ;   // Leonardo bug
     FastLED.addLeds((CLEDController*) &ledController, leds, NUM_LEDS);
- 
+
   for (int i=0; i<NUM_LEDS || i<10; i++){
     // Turn the LED on, then pause
     leds[i] = CRGB::White;
@@ -82,7 +108,9 @@ void loop() {
         bundleIN.fill(SLIPSerial.read());
   }
 
-  if(!bundleIN.hasError())
+  if(!bundleIN.hasError()){
    bundleIN.dispatch("/led", APA102control);
+   bundleIN.dispatch("/led2", APA102control2);
+  }
 }
 
