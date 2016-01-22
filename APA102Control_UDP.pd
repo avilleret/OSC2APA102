@@ -1,4 +1,4 @@
-#N canvas 301 177 717 736 10;
+#N canvas 298 191 717 736 10;
 #X floatatom 74 258 5 0 31 0 - - -, f 5;
 #X msg 74 275 sendtyped /led i \$1;
 #X floatatom 64 207 5 0 255 0 - - -, f 5;
@@ -66,7 +66,7 @@
 #X obj 565 15 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 24 547 spigot;
-#X obj 56 526 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 56 526 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X floatatom 607 16 5 0 255 0 - - -, f 5;
 #X obj 84 512 list length;
@@ -95,6 +95,9 @@
 #X obj 57 302 t b a b;
 #X msg 97 327 [;
 #X msg 50 326 ];
+#X obj 634 129 * 3;
+#X floatatom 645 105 5 0 0 0 - - -, f 5;
+#X floatatom 634 151 5 0 0 0 - - -, f 5;
 #X connect 0 0 1 0;
 #X connect 1 0 65 0;
 #X connect 2 0 3 0;
@@ -172,3 +175,6 @@
 #X connect 65 2 66 0;
 #X connect 66 0 48 0;
 #X connect 67 0 48 0;
+#X connect 68 0 70 0;
+#X connect 69 0 68 0;
+#X connect 70 0 25 0;
