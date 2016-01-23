@@ -89,10 +89,12 @@ void setup() {
   for (int i=0; i<NUM_LEDS || i<10; i++){
     // Turn the LED on, then pause
     leds[i] = CRGB::White;
+    leds2[i] = CRGB::Red; 
     FastLED.show();
     delay(2);
     // Now turn the LED off, then pause
     leds[i] = CRGB::Black;
+    leds2[i] = CRGB::Black;
     FastLED.show();
     // delay(500);
   }
