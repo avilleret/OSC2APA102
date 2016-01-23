@@ -84,6 +84,7 @@ void setup() {
     while(!Serial)
       ;   // Leonardo bug
     FastLED.addLeds((CLEDController*) &ledController, leds, NUM_LEDS);
+    FastLED.addLeds((CLEDController*) &ledController2, leds2, NUM_LEDS);
 
   for (int i=0; i<NUM_LEDS || i<10; i++){
     // Turn the LED on, then pause
