@@ -67,7 +67,7 @@ void APA102control2(OSCMessage &msg)
   {
     ledController.setAPA102Brightness(msg.getInt(0));
     ledController2.setAPA102Brightness(msg.getInt(0));
-    FastLED.show();
+    // FastLED.show();
   }
   else if(msg.isBlob(0))
   {
@@ -75,7 +75,7 @@ void APA102control2(OSCMessage &msg)
     uint8_t v[length+4];
     int s = msg.getBlob(0,(unsigned char *)v, min(length+4, NUM_LEDS * 3));
     memcpy((uint8_t *)leds2, v+4, max(min(s-4, NUM_LEDS * 3),0));
-    FastLED.show();
+    // FastLED.show();
   }
 }
 
