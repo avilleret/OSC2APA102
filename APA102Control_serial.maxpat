@@ -39,13 +39,13 @@
 		"boxes" : [ 			{
 				"box" : 				{
 					"id" : "obj-31",
-					"linecount" : 4,
+					"linecount" : 6,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 327.0, 364.0, 77.0, 60.0 ],
+					"patching_rect" : [ 327.0, 364.0, 77.0, 87.0 ],
 					"style" : "",
-					"text" : "not printing \nwill cause \nthe comm.\nto fail"
+					"text" : "not printing \nwill cause \nthe comm.\nto fail\n(over 322 LEDs)"
 				}
 
 			}
