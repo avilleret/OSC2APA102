@@ -31,8 +31,8 @@ SLIPEncodedUSBSerial SLIPSerial(Serial);
 #define DATA_PIN2 7
 #define CLOCK_PIN2 14
 
-APA102Controller_WithBrightness<DATA_PIN, CLOCK_PIN, GBR, DATA_RATE_MHZ(8)> ledController;
-APA102Controller_WithBrightness<DATA_PIN2, CLOCK_PIN2, GBR, DATA_RATE_MHZ(8)> ledController2;
+APA102Controller_WithBrightness<DATA_PIN, CLOCK_PIN, BGR, DATA_RATE_MHZ(8)> ledController;
+APA102Controller_WithBrightness<DATA_PIN2, CLOCK_PIN2, BGR, DATA_RATE_MHZ(8)> ledController2;
 
 CRGB leds[NUM_LEDS];
 CRGB leds2[NUM_LEDS];
