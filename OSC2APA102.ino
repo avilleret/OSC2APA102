@@ -105,10 +105,12 @@ void loop() {
   int size;
 
   while(!SLIPSerial.endofPacket())
-  if( (size = SLIPSerial.available()) > 0)
   {
-     while(size--)
-        bundleIN.fill(SLIPSerial.read());
+    if( (size = SLIPSerial.available()) > 0)
+    {
+       while(size--)
+          bundleIN.fill(SLIPSerial.read());
+    }
   }
 
   if(!bundleIN.hasError()){
