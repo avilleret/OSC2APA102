@@ -1,3 +1,0 @@
-[submodule "udp2serial"]
-	path = udp2serial
-	url = https://github.com/avilleret/udp2serial.git
