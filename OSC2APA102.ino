@@ -9,32 +9,48 @@
 
 */
 
-#include "APA102_WithGlobalBrightness.h"
+#include "ledStrip.h"
 
 
 
 /////////////////////////////////////////////////////////////////////
 // THIS IS THE PART THAT NEEDS TO BE CONFIGURED BASED ON YOUR NEED //
 /////////////////////////////////////////////////////////////////////
-// How many leds in your strips?
-#define NUM_LEDS 320
-#define NUM_LEDS2 320
 
+// How many strips do you want to use ?
+#define nStrips 3
+// set to 1 to use DMX, to 0 not to use it
+#define DMX 1
+
+// How many leds in each of your strips?
+#if nStrips > 0
+#define NUM_LEDS1 320
+#elif nStrips > 1
+#define NUM_LEDS2 320
+#elif nStrips > 2
+#define NUM_LEDS3 320
+#endif
+
+#if DMX
 // How many DMX channels at Max?
 #define NUM_DMX 64
+#endif
 
 // APA102 LED strips are SPI based (four wires - data, clock, ground, and power),
 // so we have to define DATA_PIN and CLOCK_PIN
 // - for LED strip 1
-#define DATA_PIN 11
-#define CLOCK_PIN 27 // 27 for teensy >= 3.5 / for <3.5, use pin 13 (which causes the LED to stay lit)
+#if nStrips > 0
+#define DATA_PIN1 11
+#define CLOCK_PIN1 27 // 27 for teensy >= 3.5 / for <3.5, use pin 13 (which causes the LED to stay lit)
+#elif nStrips > 1
 // - for LED strip 2
 #define DATA_PIN2 7
 #define CLOCK_PIN2 14
+#elif nStrips > 2
 // - for LED strip 3
 #define DATA_PIN3 21
 #define CLOCK_PIN3 20 // 27 for teensy >= 3.5 / for <3.5, use pin 13 (which causes the LED to stay lit)
-
+#endif
 
 
 /////////////////////////////////////////////////////////////////////
@@ -74,7 +90,7 @@ void LEDcontrol(OSCMessage &msg)
   // When receiving a Blob, we assume it's a list of RGB values
   else if (msg.isBlob(0))
   {
-    msg.getBlob(0, (unsigned char *)leds);
+    msg.getBlob(0, (unsigned char *)leds, NUM_LEDS*3);
   }
 }
 
@@ -87,7 +103,7 @@ void LEDcontrol2(OSCMessage &msg)
   }
   else if (msg.isBlob(0))
   {
-    msg.getBlob(0, (unsigned char *)leds2);
+    msg.getBlob(0, (unsigned char *)leds2, NUM_LEDS2*3);
   }
 }
 
@@ -122,6 +138,7 @@ void onPacket(const uint8_t* buffer, size_t size) {
     bundleIN.dispatch("/1", LEDcontrol);
     bundleIN.dispatch("/2", LEDcontrol2);
     bundleIN.dispatch("/b", setGlobalBrightness);
+    bundleIN.dispatch("/DMX", setDMX);
   }
 }
 
