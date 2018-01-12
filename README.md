@@ -13,25 +13,19 @@ There are test applications for several environnements: Max, pd, processing, whi
 
 ## Arduino code 
 
-Those Arduino Sketches requires the following libraries :
+The Arduino Sketches requires the following libraries :
 
-- OSC : 
+- **OSC** :  [https://github.com/CNMAT/OSC](https://github.com/CNMAT/OSC) (until the latest changes are released through Arduino’s library manager) - This one might already be installed via the teensy installer, then you’ll need to remove it from where it was installed (on the Mac: /Arduino.app/Contents/Java/hardware/teensy/avr/libraries)
 
-~~~~
-  cd ARDUINO_LIBRARY_FOLDER // could be ~/Documents/Arduino/libraries on Mac OS
-  git clone https://github.com/bltzr/OSC.git
-~~~~
+- **FastLED** : http://fastled.io/  - This one might already be installed via the teensy installer, it’s OK as is.
 
-We need to checkout this fork since there is a bug in OSC blob decoding (see [#40](https://github.com/CNMAT/OSC/issues/40))
-Also this version (until this particular feature is merged in the official repository) uses a simpler/less elegant way to get data.
+The next libraries can be installed through Arduino library manager.
 
-- [https://github.com/avilleret/PacketSerial/tree/feature/SLIPEncoding](https://github.com/avilleret/PacketSerial/tree/feature/SLIPEncoding)
+- **PacketSerial** 
 
-- FastLED : http://fastled.io/ (available through Arduino library manager)
+- **TeensyDmx**, for those wanting to use the DMX feature
 
-For those wanting to use the DMX versions, you’ll need to add:
-- [https://github.com/chrisstaite/TeensyDmx.git](https://github.com/chrisstaite/TeensyDmx.git)
-- You’ll also probably want to use a SN75176 or MAX485 chip in order to make your signal differential ([more info on this](https://electronics.stackexchange.com/questions/100487/dmx-on-arduino-with-rs485). We’ve added an electronics schematics folder, courtesy [natcl/dmx_midi](https://github.com/natcl/dmx_midi/tree/master/schematics)
+You’ll also probably want to use a SN75176 or MAX485 chip in order to make your signal differential ([more info on this](https://electronics.stackexchange.com/questions/100487/dmx-on-arduino-with-rs485). We’ve added an electronics schematics folder for that, courtesy [natcl/dmx_midi](https://github.com/natcl/dmx_midi/tree/master/schematics)
 
 ## Pd patch
 mrpeach's `OSC`, `slip` and `network libraries (available through [deken](https://github.com/pure-data/deken))
