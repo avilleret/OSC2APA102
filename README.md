@@ -5,8 +5,6 @@ This repository offers several means to use a teensy to control APA102 LED strip
 
 Optionally, it’s also possible to output DMX on the UART port 1 (for teensy >= 3.x). 
 
-Arduino sketches (with 4 versions, for one or 2 strips, and with or without DMX support) reside in the _OSC2APA102 sub-folder.
-
 There are test applications for several environnements: Max, pd, processing, which you can find in the appropriate folders.
 
 # Dependencies
