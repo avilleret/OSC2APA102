@@ -33,3 +33,4 @@ CNMAT OpenSoundControl and odot externals to add OpenSoundControl capability to 
 Those can be installed from Max’s package Manager.
 
 ## processing sketch
+oscP5 (from the Libraries manager)
