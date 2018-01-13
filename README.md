@@ -5,7 +5,7 @@ This repository offers several means to use a teensy to control APA102 LED strip
 
 Optionally, it’s also possible to output DMX on the UART port 1 (for teensy >= 3.x). 
 
-There are test applications for several environnements: Max, pd, processing, which you can find in the appropriate folders.
+There are test applications for Max, pd and processing.
 
 # Dependencies
 
