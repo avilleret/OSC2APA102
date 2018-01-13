@@ -157,8 +157,6 @@ OscP5 osc;
 
 void sendLEDs(byte[] values, int bright, int ditherBright) {
   
-  checkValues(brightness, dither);
-  
   /* create an osc bundle */
   OscBundle LEDBundle = new OscBundle();
   
