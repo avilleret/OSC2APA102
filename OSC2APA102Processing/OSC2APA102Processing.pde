@@ -32,8 +32,10 @@ color color1, color2;
 void setup() {
   size(512, 135);  // Window size
   frameRate(60);
-  setupSerial();   // Set the correct serial port for your teensy at the end of the file in order to 
-  checkValues(brightness, dither);
+  // List all the available serial ports: - uncomment next line if you don't know you serial device port name
+  //printArray(Serial.list()); // uncomment to get the list of devices
+  // then copy the name of the desired device as argument to the setupSerial() function below
+  setupSerial("/dev/cu.usbmodem3324811");   // Set the correct serial port for your teensy here
   setupDemos();
 }
 
@@ -146,16 +148,6 @@ int calcDither(int combinedBrightness){
   return ditherTable[combinedBrightness];
 }
 
-// This is to make sure that we won't use values outside of the ranges
-
-void checkValues(int bright, int ditherBright){
-  if (bright<=0){brightness=0;} 
-  if (bright>31){bright=31;} 
-  if (ditherBright<=0){ditherBright=0;} 
-  if (ditherBright>255){ditherBright=255;} 
-}
-
-
 
 /************************************************************************************
   OSC BUNDLE
@@ -170,7 +162,7 @@ void sendLEDs(byte[] values, int bright, int ditherBright) {
   /* create an osc bundle */
   OscBundle LEDBundle = new OscBundle();
   
-  /* create a new osc message object */
+  /* create a new osc message object containing the LED values*/
   OscMessage LEDMessage = new OscMessage("/1");
   LEDMessage.add(values);
   
@@ -180,16 +172,16 @@ void sendLEDs(byte[] values, int bright, int ditherBright) {
    //reset and clear the myMessage object for refill.
   LEDMessage.clear();
   
-  // refill the osc message object again 
+  // refill the osc message object again, now with the brightness
   LEDMessage.setAddrPattern("/1");
-  LEDMessage.add(bright);
+  LEDMessage.add(constrain(bright, 0, 31));
   LEDBundle.add(LEDMessage);
   
   
-  // refill the osc message object again 
+  // refill the osc message object once again with the dither brightness 
   LEDMessage.clear();
   LEDMessage.setAddrPattern("/b");
-  LEDMessage.add(ditherBright);
+  LEDMessage.add(constrain(ditherBright, 0, 255));
   LEDBundle.add(LEDMessage);
   
   serialSend(LEDBundle.getBytes());
@@ -233,20 +225,8 @@ Serial serial;
 int baud = 9600; // serial port speed
 ArrayList<Byte> serialBuffer = new ArrayList<Byte>();
 
-void setupSerial() {
-  // List all the available serial ports:
-  //printArray(Serial.list()); // uncomment to get the list of devices
-  // then copy the name of the desired device to the portName String variable below
-  
-  
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
+void setupSerial(String portName) {  
  
-  String portName = "/dev/cu.usbmodem3324811";  // <-- THIS IS WHERE YOU SET YOUR SERIAL PORT
-
-///////////////////////////////////////////////////////////////////////////////////////////////// 
-/////////////////////////////////////////////////////////////////////////////////////////////////  
-  
   // let's actually create the serial port 
   serial = new Serial(this, portName, baud);
 }
