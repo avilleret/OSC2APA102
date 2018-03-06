@@ -13,11 +13,11 @@ There are test applications for Max, pd and processing.
 
 The Arduino Sketches requires the following libraries :
 
-- **OSC** :  [https://github.com/CNMAT/OSC](https://github.com/CNMAT/OSC) (until the latest changes are released through Arduino’s library manager) - This one might already be installed via the teensy installer, then you’ll need to remove it from where it was installed (on the Mac: /Arduino.app/Contents/Java/hardware/teensy/avr/libraries)
-
 - **FastLED** : http://fastled.io/  - This one might already be installed via the teensy installer, it’s OK as is.
 
 The next libraries can be installed through Arduino library manager.
+
+- **OSC** : This one might already be installed via the teensy installer, if the version is lower than 1.3.4, you’ll need to remove it from where it was installed (on the Mac: /Arduino.app/Contents/Java/hardware/teensy/avr/libraries) and update it from the library manager
 
 - **PacketSerial** 
 
