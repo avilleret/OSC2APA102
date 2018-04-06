@@ -30,7 +30,8 @@ mrpeach's `OSC`, `slip` and `network libraries (available through [deken](https:
 
 ## Max patch
 CNMAT OpenSoundControl and odot externals to add OpenSoundControl capability to Max.
-Those can be installed from Max’s package Manager.
+OpenSoundControl external is included in the CNMAT package, that can be installed from Max’s package Manager. odot externals have to be [manually downloaded](http://cnmat.berkeley.edu/downloads) and installed in Max's package folder. Then the o.slip.encode external has to be moved from dev/externals to externals folder
+Note, for Win64, there is a version somewhere on the web of the OpenSoundControl external (because, AFAIK, there is no way to make a blob with the odot externals)
 
 ## processing sketch
 oscP5 (from the Libraries manager)
