@@ -16,16 +16,16 @@
 /////////////////////////////////////////////////////////////////////
 
   
-#define nStrips 3         // <-- How many strips do you want to use ?
+#define nStrips 2         // <-- How many strips do you want to use ?
   
-#define DMX 1             // <-- set to 1 to use DMX, to 0 not to use it
+#define DMX 0             // <-- set to 1 to use DMX, to 0 not to use it
 
 // How many leds in each of your strips?
 #if nStrips > 0
-#define NUM_LEDS1 320     // <-- # of LEDs in strip 1
+#define NUM_LEDS1 140     // <-- # of LEDs in strip 1
 #endif
 #if nStrips > 1
-#define NUM_LEDS2 320     // <-- # of LEDs in strip 2
+#define NUM_LEDS2 140     // <-- # of LEDs in strip 2
 #endif
 #if nStrips > 2
 #define NUM_LEDS3 320     // <-- # of LEDs in strip 3
@@ -36,14 +36,14 @@
 // (four wires - data, clock, ground, and power),
 // so we have to define DATA_PIN and CLOCK_PIN:
 #if nStrips > 0               // - for LED strip 1:
-#define DATA_PIN1 11     // <-- pin number for DATA (MOSI, green wire)
-#define CLOCK_PIN1 27    // <-- pin number for CLOCK (SCK, yellow wire) - NB: use 27 for teensy >= 3.5 / for teensy <3.5, use pin 13 (which causes the LED to stay lit)
+#define DATA_PIN1 7     // <-- pin number for DATA (MOSI, green wire)
+#define CLOCK_PIN1 14    // <-- pin number for CLOCK (SCK, yellow wire) 
 #endif
 #if nStrips > 1               // - for LED strip 2
-#define DATA_PIN2 7      // <-- pin number for DATA (MOSI, green wire)
-#define CLOCK_PIN2 14    // <-- pin number for CLOCK (SCK, yellow wire)
+#define DATA_PIN2 11      // <-- pin number for DATA (MOSI, green wire)
+#define CLOCK_PIN2 13    // <-- pin number for CLOCK (SCK, yellow wire)
 #endif
-#if nStrips > 2              // - for LED strip 3 // only for teensy >= 3.5
+#if nStrips > 2              // - for LED strip 3 // only for teensy >= 3.5, note this might cause flickering in the 3rd strip
 #define DATA_PIN3 21     // <-- pin number for DATA (MOSI, green wire)
 #define CLOCK_PIN3 20    // <-- pin number for CLOCK (SCK, yellow wire)
 #endif
