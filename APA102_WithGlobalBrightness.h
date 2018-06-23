@@ -1,6 +1,6 @@
 #include <FastLED.h>
 
-template <uint8_t DATA_PIN, uint8_t CLOCK_PIN, EOrder RGB_ORDER = BGR, uint8_t SPI_SPEED = DATA_RATE_MHZ(24)>
+template <uint8_t DATA_PIN, uint8_t CLOCK_PIN, EOrder RGB_ORDER = BGR, uint8_t SPI_SPEED = DATA_RATE_MHZ(12)>
 class APA102Controller_WithBrightness : public CLEDController {
   typedef SPIOutput<DATA_PIN, CLOCK_PIN, SPI_SPEED> SPI;
   SPI mSPI;
