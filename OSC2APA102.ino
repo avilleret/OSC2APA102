@@ -11,9 +11,9 @@
 
 #include "APA102_WithGlobalBrightness.h"
 
-/////////////////////////////////////////////////////////////////////
-// THIS IS THE PART THAT NEEDS TO BE CONFIGURED BASED ON YOUR NEED //
-/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+// THIS IS THE PART THAT NEEDS TO BE CONFIGURED BASED ON YOUR NEEDS //
+//////////////////////////////////////////////////////////////////////
 
   
 #define nStrips 2         // <-- How many strips do you want to use ?
@@ -72,7 +72,7 @@ PacketSerial_<SLIP, SLIP::END, 8192> serial;
 #if nStrips > 0
 
 // Here we create the LED controllers for FastLED (see .h file as 2d tab)
-APA102Controller_WithBrightness<DATA_PIN1, CLOCK_PIN1, BGR, DATA_RATE_MHZ(6)> ledController1;
+APA102Controller_WithBrightness<DATA_PIN1, CLOCK_PIN1, BGR, DATA_RATE_MHZ(12)> ledController1;
 // Array containing the RGB values for all LEDs of the strip
 CRGB leds1[NUM_LEDS1];
 
@@ -95,7 +95,7 @@ void LEDcontrol1(OSCMessage &msg)
 /////////////////////////////////////////////////////////////////////
 #if nStrips > 1
 
-APA102Controller_WithBrightness<DATA_PIN2, CLOCK_PIN2, BGR, DATA_RATE_MHZ(6)> ledController2;
+APA102Controller_WithBrightness<DATA_PIN2, CLOCK_PIN2, BGR, DATA_RATE_MHZ(12)> ledController2;
 CRGB leds2[NUM_LEDS2];
 
 // Parsing the OSC messages for /2 (2nd  LED strip)
@@ -115,7 +115,7 @@ void LEDcontrol2(OSCMessage &msg)
 /////////////////////////////////////////////////////////////////////
 #if nStrips > 2
 
-APA102Controller_WithBrightness<DATA_PIN3, CLOCK_PIN3, BGR, DATA_RATE_MHZ(6)> ledController3;
+APA102Controller_WithBrightness<DATA_PIN3, CLOCK_PIN3, BGR, DATA_RATE_MHZ(12)> ledController3;
 CRGB leds3[NUM_LEDS3];
 
 // Parsing the OSC messages for /3 (3rd  LED strip)
