@@ -5,7 +5,8 @@ This repository offers several means to use a teensy to control APA102 LED strip
 
 Optionally, it’s also possible to output DMX on the UART port 1 (for teensy >= 3.x). 
 
-Test applications for Max, pd and processing are also provided
+Test applications for Max, pd and processing are also provided.
+An openFramewoks application is also currently being developed, to control LED strips from Syphon of video files: https://github.com/bltzr/Ellydeez
 
 # Settings
 
