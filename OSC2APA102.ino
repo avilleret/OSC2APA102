@@ -16,7 +16,7 @@
 //////////////////////////////////////////////////////////////////////
 
   
-#define nStrips 2         // <-- How many strips do you want to use ?
+#define nStrips 1         // <-- How many strips do you want to use ?
   
 #define DMX 1             // <-- set to 1 to use DMX, to 0 not to use it
 
@@ -52,8 +52,6 @@
 #if DMX
 // How many DMX channels at Max?
 #define NUM_DMX 66       // <-- # of DMX Channels
-#include <TeensyDMX.h>
-namespace teensydmx = ::qindesign::teensydmx;
 #endif
 
 
@@ -135,6 +133,9 @@ void LEDcontrol3(OSCMessage &msg)
 
 /////////////////////////////////////////////////////////////////////
 #if DMX
+#include <TeensyDMX.h>
+namespace teensydmx = ::qindesign::teensydmx;
+
 constexpr uint8_t kTXPin = 17;
 // Create the DMX sender on Serial1.
 teensydmx::Sender dmxTx{Serial1};
@@ -148,7 +149,7 @@ void setDMX(OSCMessage &msg)
   if (msg.isBlob(0))
   {
     int l = msg.getBlob(0, (unsigned char *)DMXvalues);
-    dmxTx.set(0, DMXvalues, NUM_DMX);
+    dmxTx.set(1, DMXvalues, NUM_DMX);
     //Dmx.setChannels(0, DMXvalues, msg.getBlob(0, (unsigned char *)DMXvalues));
     for (int i=0;i<l; i++){
       Serial.print(DMXvalues[i]);
@@ -243,8 +244,9 @@ void setup() {
 
 void loop() {
   serial.update();
-  FastLED.show();
+  FastLED.show(); 
 }
+
 
 
 
