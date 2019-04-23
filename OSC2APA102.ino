@@ -150,13 +150,14 @@ void setDMX(OSCMessage &msg)
   {
     int l = msg.getBlob(0, (unsigned char *)DMXvalues);
     dmxTx.set(1, DMXvalues, NUM_DMX);
-    //Dmx.setChannels(0, DMXvalues, msg.getBlob(0, (unsigned char *)DMXvalues));
+    /* //for testing purposes:
     for (int i=0;i<l; i++){
       Serial.print(DMXvalues[i]);
       Serial.print(" ");
     }
     Serial.println();
     Serial.println(l);
+    */
   }
 }
 #endif
