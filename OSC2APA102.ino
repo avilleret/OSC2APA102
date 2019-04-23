@@ -18,14 +18,14 @@
   
 #define nStrips 1         // <-- How many strips do you want to use ?
   
-#define DMX 0             // <-- set to 1 to use DMX, to 0 not to use it
+#define DMX 1             // <-- set to 1 to use DMX, to 0 not to use it
 
 // How many leds in each of your strips?
 #if nStrips > 0
-#define NUM_LEDS1 140     // <-- # of LEDs in strip 1
+#define NUM_LEDS1 200     // <-- # of LEDs in strip 1
 #endif
 #if nStrips > 1
-#define NUM_LEDS2 140     // <-- # of LEDs in strip 2
+#define NUM_LEDS2 200     // <-- # of LEDs in strip 2
 #endif
 #if nStrips > 2
 #define NUM_LEDS3 320     // <-- # of LEDs in strip 3
@@ -51,7 +51,7 @@
 
 #if DMX
 // How many DMX channels at Max?
-#define NUM_DMX 64       // <-- # of DMX Channels
+#define NUM_DMX 66       // <-- # of DMX Channels
 #endif
 
 
@@ -133,11 +133,12 @@ void LEDcontrol3(OSCMessage &msg)
 
 /////////////////////////////////////////////////////////////////////
 #if DMX
+#include <TeensyDMX.h>
+namespace teensydmx = ::qindesign::teensydmx;
 
-#include <TeensyDmx.h>
-
-// Here we create a DMX output on Serial 1
-TeensyDmx Dmx(Serial1);
+constexpr uint8_t kTXPin = 17;
+// Create the DMX sender on Serial1.
+teensydmx::Sender dmxTx{Serial1};
 
 // Array containing the DMX Values
 uint8_t DMXvalues[NUM_DMX];
@@ -148,7 +149,8 @@ void setDMX(OSCMessage &msg)
   if (msg.isBlob(0))
   {
     int l = msg.getBlob(0, (unsigned char *)DMXvalues);
-    Dmx.setChannels(0, DMXvalues, msg.getBlob(0, (unsigned char *)DMXvalues));
+    dmxTx.set(1, DMXvalues, NUM_DMX);
+    //Dmx.setChannels(0, DMXvalues, msg.getBlob(0, (unsigned char *)DMXvalues));
     for (int i=0;i<l; i++){
       Serial.print(DMXvalues[i]);
       Serial.print(" ");
@@ -226,8 +228,11 @@ void setup() {
   #endif
 
   #if DMX
-  // Now set DMX mode
-  Dmx.setMode(TeensyDmx::DMX_OUT);
+  // Set the pin that enables the transmitter
+  pinMode(kTXPin, OUTPUT);
+  digitalWriteFast(kTXPin, HIGH);
+
+  dmxTx.begin();
   #endif
 
     // Turn off all LEDs 
@@ -239,7 +244,7 @@ void setup() {
 
 void loop() {
   serial.update();
-  FastLED.show();
+  FastLED.show(); 
 }
 
 
