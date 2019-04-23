@@ -16,7 +16,7 @@
 //////////////////////////////////////////////////////////////////////
 
   
-#define nStrips 2         // <-- How many strips do you want to use ?
+#define nStrips 1         // <-- How many strips do you want to use ?
   
 #define DMX 0             // <-- set to 1 to use DMX, to 0 not to use it
 
@@ -62,7 +62,6 @@
 
 #include <OSCBundle.h>
 #include <PacketSerial.h>
-#include <TeensyDmx.h>
 
 // Use the serial device with PacketSerial
 PacketSerial_<SLIP, SLIP::END, 8192> serial;
@@ -134,6 +133,9 @@ void LEDcontrol3(OSCMessage &msg)
 
 /////////////////////////////////////////////////////////////////////
 #if DMX
+
+#include <TeensyDmx.h>
+
 // Here we create a DMX output on Serial 1
 TeensyDmx Dmx(Serial1);
 
