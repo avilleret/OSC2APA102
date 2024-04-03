@@ -5,7 +5,22 @@ This repository offers several means to use a teensy to control APA102 LED strip
 
 Optionally, it’s also possible to output DMX on the UART port 1 (for teensy >= 3.x). 
 
-There are test applications for Max, pd and processing.
+Test applications for Max, pd and processing are also provided.
+An openFramewoks application is also currently being developed, to control LED strips from Syphon of video files: https://github.com/bltzr/Ellydeez
+
+# Settings
+
+From our tests, there are several settings to use in order that the LEDs and the Arduino sketch run properly:
+
+- Set the CPU speed to 96 MHz. On teensy 3.2, this yielded the best results. And on 3.6, when setting this to the maximum available value, we encountered frequent crashes of the teensy
+
+- Using other pins than 7/14 and 11/13 on a teensy 3.6 caused flickering so, even though pins are provided for a third LED strip, we found no way to make it work in a satisfying way.
+
+Also you will notice that, when using pin 13, the board’s LED is turned on, which can be visually annoying.
+
+
+Using these settings, we had several teensies running for days while controlling hundreds of LEDs, without any problem. If you get any success with other settings, please let us know through the issues, or come and chat at https://gitter.im/OSC2APA102
+
 
 # Dependencies
 
@@ -30,7 +45,8 @@ mrpeach's `OSC`, `slip` and `network libraries (available through [deken](https:
 
 ## Max patch
 CNMAT OpenSoundControl and odot externals to add OpenSoundControl capability to Max.
-Those can be installed from Max’s package Manager.
+OpenSoundControl external is included in the CNMAT package, that can be installed from Max’s package Manager. odot externals have to be [manually downloaded](http://cnmat.berkeley.edu/downloads) and installed in Max's package folder. Then the o.slip.encode external has to be moved from dev/externals to externals folder
+Note, for Win64, there is a version somewhere on the web of the OpenSoundControl external (because, AFAIK, there is no way to make a blob with the odot externals)
 
 ## processing sketch
 oscP5 (from the Libraries manager)
