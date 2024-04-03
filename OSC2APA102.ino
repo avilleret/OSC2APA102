@@ -5,7 +5,7 @@
   to control two APA102 LED strips 
   with some extra DMX output
 
-  Copyright Antoine Villeret / Pascal Baltazar - 2015/2018
+  Copyright Antoine Villeret / Pia Baltazar - 2015/2018
 
 */
 
